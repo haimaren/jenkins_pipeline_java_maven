@@ -2,12 +2,12 @@ node {
    // Mark the code checkout 'stage'....
    stage 'Checkout'
    
-   git url: 'https://github.com/TTFHW/jenkins_pipeline_java_maven.git'
+   git url: 'https://github.com/haimaren/jenkins_pipeline_java_maven.git'
 
    // Get the maven tool.
    // ** NOTE: This 'M3' maven tool must be configured
    // **       in the global configuration.           
-   def mvnHome = tool 'M3'
+   def mvnHome = tool 'maven3.3'
 
    // Mark the code build 'stage'....
    stage 'Build'
