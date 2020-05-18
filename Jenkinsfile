@@ -15,13 +15,16 @@ pipeline {
         stage ('Publish to Test-D') {
             steps {
                 script {
-                    def remote = [:]
-                    remote.name = 'dev-tst'
-                    remote.host ='172.16.0.217'
-                    remote.user = 'root'
-                    remote.password ='yst9ol.0p;/'
-                    remote.allowAnyHosts= true
-                    sshPut remote: remote, from: '*/target/*.jar', into: '/opt/testp/'
+                    sh 'echo "${WORKSPACE}" '
+                    def workspace = pwd()
+                    war_name='test-jenkinsfile_master'
+                    host ='172.16.0.217'
+                    user = 'root'
+                    passwd ='yst9ol.0p;/'
+                        sh """
+                            cd $workspace/'$war_name'/target
+                            sshpass -p'$passwd' scp -o StrictHostKeyChecking=no *.jar '$user'@'$host':/opt/testp/
+                        """
                 }
             }
         }
