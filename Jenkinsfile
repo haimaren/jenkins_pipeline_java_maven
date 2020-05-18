@@ -22,7 +22,7 @@ pipeline {
                     passwd ='yst9ol.0p;/'
                         sh """
                             cd ${WORKSPACE}/target
-                            sshpass -p'$passwd' scp -o StrictHostKeyChecking=no *.jar '$user'@'$host':/opt/testp/
+                            /usr/bin/sshpass -p'$passwd' scp -o StrictHostKeyChecking=no *.jar '$user'@'$host':/opt/testp/
                         """
                 }
             }
